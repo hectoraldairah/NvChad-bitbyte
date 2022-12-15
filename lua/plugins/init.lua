@@ -114,6 +114,14 @@ local plugins = {
     end,
   },
 
+  ["MunifTanjim/nui.nvim"] = {},
+
+  ["stevearc/dressing.nvim"] = {
+    config = function ()
+      require "plugins.configs.dressing"
+    end
+  },
+
   -- load luasnips + cmp related in insert mode only
 
   ["rafamadriz/friendly-snippets"] = {
@@ -203,6 +211,10 @@ local plugins = {
       require("core.utils").load_mappings "whichkey"
     end,
   },
+
+  ["Glench/Vim-Jinja2-Syntax"] = {},
+
+  ["voldikss/vim-floaterm"] = {},
 }
 
 -- Load all plugins

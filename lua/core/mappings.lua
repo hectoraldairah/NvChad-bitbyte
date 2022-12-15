@@ -294,6 +294,12 @@ M.telescope = {
   },
 }
 
+M.float_term = {
+  n = {
+    ["<leader>fn"] = {"<cmd> FloatermToggle <CR>", "open float term"}
+  },
+}
+
 M.nvterm = {
   plugin = true,
 

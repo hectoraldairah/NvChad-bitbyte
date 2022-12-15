@@ -19,6 +19,16 @@ local options = {
   indent = {
     enable = true,
   },
+
+  rainbow = {
+    enable = true,
+    extended_mode = false
+  },
+
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
 }
 
 -- check for any override

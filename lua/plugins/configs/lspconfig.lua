@@ -44,6 +44,7 @@ M.capabilities.textDocument.completion.completionItem = {
   },
 }
 
+
 lspconfig.sumneko_lua.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
@@ -74,4 +75,25 @@ lspconfig.tsserver.setup {
   root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
 }
 
+lspconfig.cssls.setup {
+  capabilities = M.capabilities,
+  cmd = { "vscode-css-language-server", "--stdio" },
+  filetypes = { "css", "scss", "less" },
+  root_dir = root_pattern("package.json", ".git"),
+  settings = { css = { validate = true }, less = { validate = true }, scss = { validate = true } },
+  single_file_support = true,
+  init_options = { provideFormatter = true },
+}
+
+
+lspconfig.html.setup {
+  capabilities = M.capabilities,
+  cmd = { "vscode-html-language-server", "--stdio" },
+  filetypes = { "html", "nunjucks", "njk", ".njk", "ninja"},
+  init_options = {
+    configurationSection = { "html", "css", "javascript" },
+    embeddedLanguages = { css = true, javascript = true },
+    provideFormatter = true
+  }
+}
 return M
