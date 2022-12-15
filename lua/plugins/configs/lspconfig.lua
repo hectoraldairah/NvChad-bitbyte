@@ -9,12 +9,13 @@ require "nvchad_ui.lsp"
 
 local M = {}
 local utils = require "core.utils"
+local root_pattern = lspconfig.util.root_pattern;
 
 -- export on_attach & capabilities for custom lspconfigs
 
 M.on_attach = function(client, bufnr)
-  client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = false
+  client.server_capabilities.documentFormattingProvider = true
+  client.server_capabilities.documentRangeFormattingProvider = true
 
   utils.load_mappings("lspconfig", { buffer = bufnr })
 
@@ -62,6 +63,15 @@ lspconfig.sumneko_lua.setup {
       },
     },
   },
+}
+
+lspconfig.tsserver.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
+  init_options = { hostInfo = "neovim" },
+  root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
 }
 
 return M
